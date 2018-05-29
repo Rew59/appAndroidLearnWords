@@ -1,0 +1,15 @@
+page-works {
+    ion-content ion-buttons.btnBack{
+        position: absolute;
+    }
+    ion-content div.navWordsRightBlock{
+        position: absolute;
+        width: 100%;
+        padding: 14px 32px 0 0;
+        font-weight: bold;
+    }
+    ion-content div.scroll-content{
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+}

@@ -1,0 +1,56 @@
+
+<ion-content padding  *ngIf="isOnline">
+    
+    
+        <ion-buttons class="btnBack">
+            <button ion-button icon-only color="dark" clear (click)="onBackHome()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <div class="navWordsRightBlock" text-right>{{currentSlide}} / {{countSlides ? countSlides : 0 }}</div>
+    
+    
+    
+        <ion-slides (ionSlideTap)="clickSlide()" (ionSlideDrag)="slideChanged()" 
+        (ionSlideDidChange)="slideDidChange()">
+        
+            <ion-slide *ngFor="let word of words | async">
+                    
+                    <div *ngIf="!this.isTranslationWord" class="card-title">
+                        <h1>{{ word.nameWord }} </h1> 
+                    </div>
+                    <div *ngIf="this.isTranslationWord" class="card-title">
+                         <h1 *ngFor="let wordTranslation of word.translationWord ">
+                            {{ wordTranslation }} <br>
+                        </h1> 
+                    </div>
+               
+            </ion-slide>
+        </ion-slides>
+
+</ion-content>
+
+<ion-content padding  *ngIf="!isOnline">
+        <ion-buttons class="btnBack">
+            <button ion-button icon-only color="dark" clear (click)="onBackHome()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <div class="navWordsRightBlock" text-right>{{currentSlide}} / {{countSlides ? countSlides : 0 }}</div>
+
+            <ion-slides (ionSlideTap)="clickSlide()" (ionSlideDrag)="slideChanged()" 
+            (ionSlideDidChange)="slideDidChange()">
+                    <ion-slide *ngFor="let word of wordsStorage | async">
+                        <div *ngIf="!this.isTranslationWord" class="card-title">
+                               
+                            <h1>{{ word.nameWord }} </h1>
+                        
+                        </div>
+                        <div *ngIf="this.isTranslationWord" class="card-title">
+                            <h1  *ngFor="let wordTranslation of word.translationWord">
+                                {{ wordTranslation }} <br>
+                            </h1>
+                        </div>
+                    </ion-slide>
+                </ion-slides>
+</ion-content>
